@@ -13,6 +13,8 @@ function BookList () {
     const [bookDetails, setBookDetails] = useState([]);
     var header = {token: localStorage.getItem('token')};
 
+    console.log(header);
+
     useEffect(() => {
 
         axios.get('http://localhost:8080/newbook',{headers:header})
@@ -33,7 +35,10 @@ function BookList () {
     
     console.log(bookDetails);
     return (
-        <div className='book_list_container'>
+        <>
+        {header.token !== null ? 
+            
+            <div className='book_list_container'>
             <div className='book_list_box'>
                 <header className='header_book_list'>
                     <h1>BOOKS LIST</h1>
@@ -62,7 +67,10 @@ function BookList () {
             </div>
         </div>
 
-
+            
+            : <></>}
+        
+            </>
         
     );
 };
